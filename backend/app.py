@@ -8,7 +8,9 @@ load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
-
+@app.route("/health")
+def health():
+    return {"status": "ok"}
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
