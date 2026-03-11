@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.animate-marquee{
+white-space:nowrap;
+display:inline-block;
+animation:marquee 12s linear infinite;
+}
+
+@keyframes marquee{
+0%{transform:translateX(100%)}
+100%{transform:translateX(-100%)}
+}
+.float-robot{
+animation:floatRobot 4s ease-in-out infinite;
+}
+
+@keyframes floatRobot{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+/* .popup-letter{
+opacity:0;
+transform:translateY(20px);
+display:inline-block;
+animation:popupText 0.5s forwards;
+}
+
+@keyframes popupText{
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+100%{
+opacity:1;
+transform:translateY(0);
+}
+} */
