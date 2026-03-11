@@ -34,21 +34,19 @@ const Page = () => {
     { role: "ai", text: "Neural uplink initialized. Standing by for command." }
   ]);
 
-  useEffect(() => {
-    // Enhanced AOS for smooth scaling & reappearing on scroll
-    AOS.init({ 
-      duration: 1000, 
-      once: false, 
-      mirror: true, 
-      offset: 100,
-      easing: 'ease-out-back' 
-    });
-    
-    // Flask Health Check
-    fetch("http://127.0.0.1:5000/health")
-      .then(() => setIsOnline(true))
-      .catch(() => setIsOnline(false));
-  }, []);
+ useEffect(() => {
+  AOS.init({
+    duration: 1000,
+    once: false,
+    mirror: true,
+    offset: 100,
+    easing: "ease-out-back"
+  });
+
+  fetch("https://babai-backend-wdvz.onrender.com/health")
+    .then(() => setIsOnline(true))
+    .catch(() => setIsOnline(false));
+}, []);
 
  const handleSend = async () => {
 
@@ -66,7 +64,7 @@ const Page = () => {
 
   try {
 
-    const response = await fetch("http://127.0.0.1:5000/generate", {
+    const response = await fetch("https://babai-backend-wdvz.onrender.com/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
