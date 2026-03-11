@@ -34,7 +34,8 @@ const Page = () => {
     { role: "ai", text: "Neural uplink initialized. Standing by for command." }
   ]);
 
- useEffect(() => {
+useEffect(() => {
+
   AOS.init({
     duration: 1000,
     once: false,
@@ -43,9 +44,18 @@ const Page = () => {
     easing: "ease-out-back"
   });
 
-  fetch("https://babai-backend-wdvz.onrender.com/health")
-    .then(() => setIsOnline(true))
-    .catch(() => setIsOnline(false));
+  const checkBackend = () => {
+    fetch("https://babai-backend-wdvz.onrender.com/health")
+      .then(res => res.json())
+      .then(() => setIsOnline(true))
+      .catch(() => {
+        setIsOnline(false);
+        setTimeout(checkBackend, 5000); // retry every 5 seconds
+      });
+  };
+
+  checkBackend();
+
 }, []);
 
  const handleSend = async () => {
